@@ -12,3 +12,5 @@ GOOGLE_REDIRECT_URLS = [
     f"https://oauth-redirect.googleusercontent.com/r/{PROJECT_ID}",
     f"https://oauth-redirect-sandbox.googleusercontent.com/r/{PROJECT_ID}"
 ]
+
+SERVER_PORT = int(os.environ.get("SERVER_PORT", 8080))

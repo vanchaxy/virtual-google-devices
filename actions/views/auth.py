@@ -137,9 +137,13 @@ async def process_refresh(session, form):
 
 @provide_session
 async def login(session, request):
+    # TODO remove when front will be ready
     # login_data = await request.json()
-    email = "themax087@gmail.com"  # login_data.get('email')
-    password = "1111"  # login_data.get('password')
+    # email = login_data.get('email')
+    # password = login_data.get('password')
+
+    email = "user@example.com"
+    password = "password"
 
     if not (email and password):
         return web.json_response(

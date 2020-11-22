@@ -20,10 +20,10 @@ async def create_all(en):
     async with AsyncSession(en) as session:
         user = User(
             is_active=True,
-            email="themax087@gmail.com",
-            username="themax",
+            email="user@example.com",
+            username="user",
         )
-        user.set_password("1111")
+        user.set_password("password")
 
         device = Device(
             type=DeviceType.DOOR,
