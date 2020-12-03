@@ -22,6 +22,7 @@ async def create_all(en):
             is_active=True,
             email="user@example.com",
             username="user",
+            api_key="test",
         )
         user.set_password("password")
 

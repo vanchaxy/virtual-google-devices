@@ -4,7 +4,7 @@ from aiohttp import web
 from aiohttp_security import authorized_userid
 from sqlalchemy import select
 
-from actions.db import get_user_by_email
+from actions.db import get_user_by_email, get_user_email_by_key
 from actions.db.tables import Device, User
 from actions.domain import DeviceType
 from actions.domain.trait import TraitType
@@ -13,7 +13,10 @@ from actions.helpers import provide_session
 
 @provide_session
 async def list_devices(session, request):
-    user_email = await authorized_userid(request)
+    if key := request.rel_url.query.get('key'):
+        user_email = await get_user_email_by_key(session, key)
+    else:
+        user_email = await authorized_userid(request)
     if not user_email:
         return web.json_response(
             data={"success": False, "error": "not logged in"},
@@ -57,7 +60,10 @@ async def create_device(session, request):
 
 @provide_session
 async def get_device(session, request):
-    user_email = await authorized_userid(request)
+    if key := request.rel_url.query.get('key'):
+        user_email = await get_user_email_by_key(session, key)
+    else:
+        user_email = await authorized_userid(request)
     if not user_email:
         return web.json_response(
             data={"success": False, "error": "not logged in"},

@@ -18,6 +18,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     is_active = Column(Boolean(), nullable=False)
     email = Column(String(255), unique=True)
+    api_key = Column(String(255))
     username = Column(String(255))
     password = Column(String(255))
 
@@ -36,6 +37,7 @@ class User(Base):
             "is_active": self.is_active,
             "email": self.email,
             "username": self.username,
+            "api_key": self.api_key,
         }
 
 

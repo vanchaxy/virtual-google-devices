@@ -1,3 +1,4 @@
+import uuid
 from http import HTTPStatus
 
 from aiohttp import web
@@ -43,6 +44,7 @@ async def create_user(session, request):
     new_user = User(
         is_active=True,
         email=email,
+        api_key=uuid.uuid4().hex,
         username=username,
     )
     new_user.set_password(password)
